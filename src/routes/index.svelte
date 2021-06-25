@@ -1,4 +1,4 @@
-<p>please help me</p>
+<p>please help me work</p>
 
 <script>
 import { onMount } from 'svelte'
@@ -7,8 +7,12 @@ import { dev } from '$app/env'
 let url = dev ? 'http://localhost:3000' : 'https://pleasehelpme.games'
 
 onMount(() => {
+  window.parent.postMessage({
+    message: 'from work',
+    nonce: 1,
+  }, url)
+
   window.addEventListener("message", (event) => {
-    // Do we trust the sender of this message?
     if (event.origin !== url)
       return;
 
